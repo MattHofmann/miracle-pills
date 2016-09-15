@@ -242,15 +242,43 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // MARK: Show and Hide Keyboard
     
     func keyboardWillShow(notification: NSNotification) {
-        if countryTextField.isFirstResponder || zipCodeTextField.isFirstResponder {
+        if countryTextField.isFirstResponder {
+            // move stackview up
             self.stackView.frame.origin.y -= getKeyboardHeight(notification: notification)
+            // disable other textFields and buttons
+            nameTextField.isUserInteractionEnabled = false
+            streetTextField.isUserInteractionEnabled = false
+            cityTextField.isUserInteractionEnabled = false
+            zipCodeTextField.isUserInteractionEnabled = false
+            buyNowBtn.isUserInteractionEnabled = false
+            statePickerBtn.isUserInteractionEnabled = false
+        }
+        if zipCodeTextField.isFirstResponder {
+            // move stackview up
+            self.stackView.frame.origin.y -= getKeyboardHeight(notification: notification)
+            // disable other textFields and buttons
+            nameTextField.isUserInteractionEnabled = false
+            streetTextField.isUserInteractionEnabled = false
+            cityTextField.isUserInteractionEnabled = false
+            countryTextField.isUserInteractionEnabled = false
+            buyNowBtn.isUserInteractionEnabled = false
+            statePickerBtn.isUserInteractionEnabled = false
         }
         
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if countryTextField.isFirstResponder || zipCodeTextField.isFirstResponder {
+            // reset stackView position
             self.stackView.frame.origin.y = 0
+            // enable all textFields
+            nameTextField.isUserInteractionEnabled = true
+            streetTextField.isUserInteractionEnabled = true
+            cityTextField.isUserInteractionEnabled = true
+            countryTextField.isUserInteractionEnabled = true
+            zipCodeTextField.isUserInteractionEnabled = true
+            buyNowBtn.isUserInteractionEnabled = true
+            statePickerBtn.isUserInteractionEnabled = true
         }
     }
     
