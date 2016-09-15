@@ -302,6 +302,7 @@
 				B41CDEC51D7952C800BF8ED4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
