@@ -243,8 +243,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func keyboardWillShow(notification: NSNotification) {
         if countryTextField.isFirstResponder || zipCodeTextField.isFirstResponder {
-            self.stackView.frame.origin.y -= 200
-            //self.view.frame.origin.y -= getKeyboardHeight(notification: notification)
+            self.stackView.frame.origin.y -= getKeyboardHeight(notification: notification)
         }
         
     }
@@ -252,14 +251,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func keyboardWillHide(notification: NSNotification) {
         if countryTextField.isFirstResponder || zipCodeTextField.isFirstResponder {
             self.stackView.frame.origin.y = 0
-            //self.view.frame.origin.y = 0
-            //self.view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as!NSValue // of CGRect
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
     }
 
